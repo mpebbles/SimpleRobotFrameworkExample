@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]
+then
+    echo "Usage: ./rpn <[0-9][0-9]\+>"
+    echo "Expression must contain 2 positive numbers," 
+    echo "both in range [0,9], followed by +."
+    exit 
+fi
+re='^[0-9]+$'
+if ! [[ "${1:0:2}" =~ $re ]] ||
+     [[ "${1:2:3}" != "+" ]]
+then
+    echo "Invalid input."
+    exit
+fi
+echo $((${1:0:1} + ${1:1:1}))
